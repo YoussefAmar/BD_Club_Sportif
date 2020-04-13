@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BD_Club_Sportif
+namespace Projet_Club_Sportif_CouUti
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace BD_Club_Sportif
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new EcranPrincipal());
         }
     }
 }
