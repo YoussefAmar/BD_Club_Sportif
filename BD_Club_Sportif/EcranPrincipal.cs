@@ -203,7 +203,7 @@ namespace Projet_Club_Sportif_CouUti
             BS_Match.DataSource = DT_Match;
             DGV_Match.DataSource = BS_Match;
 
-            //On remplis la grid uniquement avec les matchs se déroulant dans une semaine
+            //On remplis la grid uniquement avec les matchs se déroulant dans la semaine
 
             //Table start
             string html = "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
@@ -238,7 +238,7 @@ namespace Projet_Club_Sportif_CouUti
 
             File.WriteAllText(path, html); //Ecriture du fichier
 
-            MessageBox.Show("Chemin du fichier :" + path, "Sauvegarde du fichier HTML"); //Affichage
+            MessageBox.Show("Chemin du fichier : " + path, "Sauvegarde du fichier HTML"); //Affichage
 
             Remplir_DGV(); //Retour à la normal pour la grid utilisée
         }
@@ -249,14 +249,86 @@ namespace Projet_Club_Sportif_CouUti
 
             string path = Path.GetFullPath(file);
 
-            EcranHtmlMatch f = new EcranHtmlMatch(path);
+            EcranHtml f = new EcranHtml(path);
 
             f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
 
             f.ShowDialog();
         }
 
+        private void tsbSaveHtmlE_Click(object sender, EventArgs e) //Sauve les entrainements sous html
+        {
+            DT_Entr = new DataTable();
+            BS_Entr = new BindingSource();
 
+            List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("Periode"); //Liste entrainement
+
+            DT_Entr.Columns.Add(new DataColumn("ID", System.Type.GetType("System.Int32")));
+            DT_Entr.Columns.Add("Periode");
+            DT_Entr.Columns.Add("Equipe");
+
+            foreach (C_Entrainement Tmp in lTmp_Entr)
+            {
+                if ((Tmp.Periode - DateTime.Now).TotalDays <= 7 && (Tmp.Periode - DateTime.Now).TotalDays >= 0)
+
+                    DT_Entr.Rows.Add(Tmp.IdEntr, Tmp.Periode, Tmp.IdEquipe_entr);
+            }
+
+            BS_Entr.DataSource = DT_Entr;
+            DGV_Entr.DataSource = BS_Entr;
+
+            //On remplis la grid uniquement avec les entrainement se déroulant dans la semaine
+
+            //Table start
+            string html = "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
+
+            //Ajout en tête
+            html += "<tr>";
+            foreach (DataGridViewColumn column in DGV_Entr.Columns)
+            {
+                html += "<th style='background-color: #B8DBFD;border: 1px solid #ccc'>" + column.HeaderText + "</th>";
+            }
+            html += "</tr>";
+
+            //Ajout ligne.
+            foreach (DataGridViewRow row in DGV_Entr.Rows)
+            {
+
+                html += "<tr>";
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    html += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
+                }
+                html += "</tr>";
+
+            }
+
+            //Table end
+            html += "</table>";
+
+            string file = "Entrainement.htm";
+
+            string path = Path.GetFullPath(file); //Chemin complet
+
+            File.WriteAllText(path, html); //Ecriture du fichier
+
+            MessageBox.Show("Chemin du fichier : " + path, "Sauvegarde du fichier HTML"); //Affichage
+
+            Remplir_DGV(); //Retour à la normal pour la grid utilisée
+        }
+
+        private void tsbOpenE_Click(object sender, EventArgs e) //Ouverture de l'html entrainement
+        {
+            string file = "Entrainement.htm";
+
+            string path = Path.GetFullPath(file);
+
+            EcranHtml f = new EcranHtml(path);
+
+            f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
+
+            f.ShowDialog();
+        }
 
         #endregion
     }

@@ -331,6 +331,7 @@
             this.tsbSaveHtmlE.Size = new System.Drawing.Size(28, 28);
             this.tsbSaveHtmlE.Text = "toolStripButton1";
             this.tsbSaveHtmlE.ToolTipText = "Sauver les entrainements";
+            this.tsbSaveHtmlE.Click += new System.EventHandler(this.tsbSaveHtmlE_Click);
             // 
             // toolStripSeparator4
             // 
@@ -346,6 +347,7 @@
             this.tsbOpenE.Size = new System.Drawing.Size(28, 28);
             this.tsbOpenE.Text = "toolStripButton2";
             this.tsbOpenE.ToolTipText = "Ouvrir HTML Entrainement";
+            this.tsbOpenE.Click += new System.EventHandler(this.tsbOpenE_Click);
             // 
             // EcranPrincipal
             // 

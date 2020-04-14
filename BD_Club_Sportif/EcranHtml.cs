@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,17 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.IO;
+using Projet_Club_Sportif.Classes;
+using Projet_Club_Sportif.Gestion;
 
 namespace Projet_Club_Sportif_CouUti
 {
-    public partial class EcranHtmlMatch : Form
+    public partial class EcranHtml : Form
     {
-        public EcranHtmlMatch(string path)
+        public EcranHtml(string path)
         {
             InitializeComponent();
             var uri = new Uri(path);
-            wbHtml.Navigate(uri);
-            
+            this.Text = Path.GetFileName(path);
+            wbHtml.Navigate(uri);       
         }
     }
 }

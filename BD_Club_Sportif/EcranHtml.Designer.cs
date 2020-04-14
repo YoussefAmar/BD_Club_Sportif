@@ -1,6 +1,6 @@
 ﻿namespace Projet_Club_Sportif_CouUti
 {
-    partial class EcranHtmlMatch
+    partial class EcranHtml
     {
         /// <summary>
         /// Required designer variable.
