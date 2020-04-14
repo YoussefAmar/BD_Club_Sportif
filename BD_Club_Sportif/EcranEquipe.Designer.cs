@@ -149,7 +149,7 @@
             this.MinimizeBox = false;
             this.Name = "EcranEquipe";
             this.ShowIcon = false;
-            this.Text = "EcranEquipe";
+            this.Text = "Table Equipe";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Equipe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

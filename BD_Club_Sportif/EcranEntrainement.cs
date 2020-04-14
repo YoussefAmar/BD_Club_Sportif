@@ -37,7 +37,7 @@ namespace Projet_Club_Sportif_CouUti
             DT_Entr.Columns.Add("Periode");
             DT_Entr.Columns.Add("Equipe");
 
-            List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("ID");
+            List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("Periode");
 
             foreach (C_Entrainement Tmp in lTmp_Entr)
                 DT_Entr.Rows.Add(Tmp.IdEntr, Tmp.Periode, Tmp.IdEquipe_entr);
@@ -49,7 +49,7 @@ namespace Projet_Club_Sportif_CouUti
         private void Activer(bool Actif) //Activation des boutons/box
         {
             DGV_Entr.Enabled = btnAjouter.Enabled = btnEditer.Enabled = btnSupprimer.Enabled = Actif;
-            btnConfirmer.Enabled = btnAnnuler.Enabled;
+            btnConfirmer.Enabled = btnAnnuler.Enabled = !Actif;
 
             tbEquipe.Enabled = dtpPeriode.Enabled = !Actif;
 
@@ -137,6 +137,9 @@ namespace Projet_Club_Sportif_CouUti
 
                         BS_Entr.EndEdit();
                     }
+
+                    dtpPeriode.Value = DateTime.Today;
+                    tbEquipe.Clear();
 
                     Activer(true);
                 }

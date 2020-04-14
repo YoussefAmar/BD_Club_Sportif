@@ -47,9 +47,9 @@
             this.lblPeriode.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.lblPeriode.Location = new System.Drawing.Point(68, 419);
             this.lblPeriode.Name = "lblPeriode";
-            this.lblPeriode.Size = new System.Drawing.Size(82, 24);
+            this.lblPeriode.Size = new System.Drawing.Size(53, 24);
             this.lblPeriode.TabIndex = 40;
-            this.lblPeriode.Text = "Periode";
+            this.lblPeriode.Text = "Date";
             // 
             // btnSupprimer
             // 
@@ -173,7 +173,7 @@
             this.MinimizeBox = false;
             this.Name = "EcranEntrainement";
             this.ShowIcon = false;
-            this.Text = "EcranEntrainement";
+            this.Text = "Table Entrainement";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Entr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -47,7 +47,7 @@ namespace Projet_Club_Sportif_CouUti
         private void Activer(bool Actif) //Activation des boutons/box
         {
             DGV_Equipe.Enabled = btnAjouter.Enabled = btnEditer.Enabled = btnSupprimer.Enabled = Actif;
-            btnConfirmer.Enabled = btnAnnuler.Enabled;
+            btnConfirmer.Enabled = btnAnnuler.Enabled = !Actif;
 
             tbNom.Enabled = !Actif;
 
@@ -134,6 +134,8 @@ namespace Projet_Club_Sportif_CouUti
                     
                     BS_Equipe.EndEdit();
                 }
+
+                tbNom.Clear();
 
                 Activer(true);
             }

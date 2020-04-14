@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EcranAdversaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EcranAdversaire.Designer.cs">
+      <DependentUpon>EcranAdversaire.cs</DependentUpon>
+    </Compile>
     <Compile Include="EcranEntrainement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,18 @@
     </Compile>
     <Compile Include="EcranEquipe.Designer.cs">
       <DependentUpon>EcranEquipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EcranHtmlMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EcranHtmlMatch.Designer.cs">
+      <DependentUpon>EcranHtmlMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EcranMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EcranMatch.Designer.cs">
+      <DependentUpon>EcranMatch.cs</DependentUpon>
     </Compile>
     <Compile Include="EcranMembre.cs">
       <SubType>Form</SubType>
@@ -84,11 +102,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EcranAdversaire.resx">
+      <DependentUpon>EcranAdversaire.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EcranEntrainement.resx">
       <DependentUpon>EcranEntrainement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EcranEquipe.resx">
       <DependentUpon>EcranEquipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EcranHtmlMatch.resx">
+      <DependentUpon>EcranHtmlMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EcranMatch.resx">
+      <DependentUpon>EcranMatch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EcranMembre.resx">
       <DependentUpon>EcranMembre.cs</DependentUpon>

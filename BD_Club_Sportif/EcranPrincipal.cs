@@ -22,12 +22,10 @@ namespace Projet_Club_Sportif_CouUti
         BindingSource BS_Membre, BS_Equipe, BS_Match, BS_Entr, BS_Adv;
 
         private string ChConn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\banon\OneDrive\Documents\IS2\Progra-event\Club_Sportif\Club_Sportif_MSSQL\BD_Club_Sportif.mdf;Integrated Security=True;Connect Timeout=30";
-        
+
         public EcranPrincipal()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
             Remplir_DGV();
         }
 
@@ -36,7 +34,7 @@ namespace Projet_Club_Sportif_CouUti
             Remplir_DGV();
         }
 
-        public void Remplir_DGV() //Remplis les grid avec les données indiquées
+        public void Remplir_DGV() //Remplis les grid avec les données indiquées dans les tables
         {
             DT_Membre = new DataTable(); //initialise les tables
             DT_Equipe = new DataTable();
@@ -46,9 +44,9 @@ namespace Projet_Club_Sportif_CouUti
 
             List<C_Membre> lTmp_M = new G_Membre(ChConn).Lire("Nom"); //Liste membre
             List<C_Equipe> lTmp_E = new G_Equipe(ChConn).Lire("ID"); //Liste equipe
-            List<C_Adversaire> lTmp_A = new G_Adversaire(ChConn).Lire("Nom"); //Liste equipe
-            List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("ID"); //Liste entrainement
-            List<C_Match> lTmp_Ma = new G_Match(ChConn).Lire("ID"); //Liste Match
+            List<C_Adversaire> lTmp_A = new G_Adversaire(ChConn).Lire("ID"); //Liste adversaire
+            List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("Periode"); //Liste entrainement
+            List<C_Match> lTmp_Ma = new G_Match(ChConn).Lire("Evenement"); //Liste Match
 
             //ajoute colonne dans table equipe
 
@@ -88,20 +86,28 @@ namespace Projet_Club_Sportif_CouUti
             DT_Entr.Columns.Add("Equipe");
 
             foreach (C_Entrainement Tmp in lTmp_Entr)
-                DT_Entr.Rows.Add(Tmp.IdEntr, Tmp.Periode, Tmp.IdEquipe_entr);
+            {
+               if(Math.Abs((Tmp.Periode - DateTime.Now).TotalDays) <= 7) //Ajoute la ligne seulement si la période d'entrainement à moins d'une semaine d'écart avec la date actuel
+
+                    DT_Entr.Rows.Add(Tmp.IdEntr, Tmp.Periode, Tmp.IdEquipe_entr);
+            }
 
             //ajoute colonne dans table match
 
             DT_Match.Columns.Add(new DataColumn("ID", System.Type.GetType("System.Int32")));
-            DT_Match.Columns.Add("Domicile?");
+            DT_Match.Columns.Add("Domicile ?");
             DT_Match.Columns.Add("Evenement");
-            DT_Match.Columns.Add("Score Club");
+            DT_Match.Columns.Add("Score Equipe");
             DT_Match.Columns.Add("Score Adversaire");
             DT_Match.Columns.Add("Equipe");
             DT_Match.Columns.Add("Adversaire");
 
             foreach (C_Match Tmp in lTmp_Ma)
-                DT_Match.Rows.Add(Tmp.IdMatch, Tmp.Domicile, Tmp.Evenement, Tmp.Score_Club, Tmp.Score_Adv, Tmp.IdEquipe_Match, Tmp.IdAdv);
+            {
+                if (Math.Abs((Tmp.Evenement - DateTime.Now).TotalDays) <= 7)
+
+                    DT_Match.Rows.Add(Tmp.IdMatch, Tmp.Domicile, Tmp.Evenement, Tmp.Score_Club, Tmp.Score_Adv, Tmp.IdEquipe_Match, Tmp.IdAdv);
+            }  
 
             BS_Membre = new BindingSource();
             BS_Equipe = new BindingSource();
@@ -115,13 +121,13 @@ namespace Projet_Club_Sportif_CouUti
             BS_Entr.DataSource = DT_Entr;
             BS_Match.DataSource = DT_Match;
 
+            //Préparation des DGV
+
             DGV_Membre.DataSource = BS_Membre;
             DGV_Equipe.DataSource = BS_Equipe;
             DGV_Adv.DataSource = BS_Adv;
             DGV_Entr.DataSource = BS_Entr;
             DGV_Match.DataSource = BS_Match;
-
-            //Préparation des DGV
 
         }
 
@@ -154,10 +160,103 @@ namespace Projet_Club_Sportif_CouUti
             f.ShowDialog();
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e) //Quitter l'application
+        private void btnAdv_Click(object sender, EventArgs e)
         {
-            Close();
+            EcranAdversaire f = new EcranAdversaire(ChConn);
+
+            f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
+
+            f.ShowDialog();
         }
+
+        private void btnMatch_Click(object sender, EventArgs e)
+        {
+            EcranMatch f = new EcranMatch(ChConn);
+
+            f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
+
+            f.ShowDialog();
+        }
+
+        private void tsbtnSavehtml_Click(object sender, EventArgs e) //Sauve les matchs sous html
+        {
+            DT_Match = new DataTable();
+            BS_Match = new BindingSource();
+
+            List<C_Match> lTmp_Ma = new G_Match(ChConn).Lire("Evenement"); //Liste Match
+
+            DT_Match.Columns.Add(new DataColumn("ID", System.Type.GetType("System.Int32")));
+            DT_Match.Columns.Add("Domicile ?");
+            DT_Match.Columns.Add("Evenement");
+            DT_Match.Columns.Add("Score Equipe");
+            DT_Match.Columns.Add("Score Adversaire");
+            DT_Match.Columns.Add("Equipe");
+            DT_Match.Columns.Add("Adversaire");
+
+            foreach (C_Match Tmp in lTmp_Ma)
+            {
+                if ((Tmp.Evenement - DateTime.Now).TotalDays <= 7 && (Tmp.Evenement - DateTime.Now).TotalDays >= 0)
+
+                    DT_Match.Rows.Add(Tmp.IdMatch, Tmp.Domicile, Tmp.Evenement, Tmp.Score_Club, Tmp.Score_Adv, Tmp.IdEquipe_Match, Tmp.IdAdv);
+            }
+
+            BS_Match.DataSource = DT_Match;
+            DGV_Match.DataSource = BS_Match;
+
+            //On remplis la grid uniquement avec les matchs se déroulant dans une semaine
+
+            //Table start
+            string html = "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
+
+            //Ajout en tête
+            html += "<tr>";
+            foreach (DataGridViewColumn column in DGV_Match.Columns)
+            {
+                html += "<th style='background-color: #B8DBFD;border: 1px solid #ccc'>" + column.HeaderText + "</th>";
+            }
+            html += "</tr>";
+
+            //Ajout ligne.
+            foreach (DataGridViewRow row in DGV_Match.Rows)
+            {
+
+                    html += "<tr>";
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        html += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
+                    }
+                    html += "</tr>";
+                
+            }
+
+            //Table end
+            html += "</table>";
+
+            string file = "Programme.htm";
+
+            string path = Path.GetFullPath(file); //Chemin complet
+
+            File.WriteAllText(path, html); //Ecriture du fichier
+
+            MessageBox.Show("Chemin du fichier :" + path, "Sauvegarde du fichier HTML"); //Affichage
+
+            Remplir_DGV(); //Retour à la normal pour la grid utilisée
+        }
+
+        private void tsbtnOpen_Click(object sender, EventArgs e) //Ouverture de l'html match
+        {
+            string file = "Programme.htm";
+
+            string path = Path.GetFullPath(file);
+
+            EcranHtmlMatch f = new EcranHtmlMatch(path);
+
+            f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
+
+            f.ShowDialog();
+        }
+
+
 
         #endregion
     }

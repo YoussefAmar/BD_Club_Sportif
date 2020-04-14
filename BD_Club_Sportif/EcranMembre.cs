@@ -51,8 +51,8 @@ namespace Projet_Club_Sportif_CouUti
         private void Activer(bool Actif)
         {
             DGV_Membre.Enabled = btnAjouter.Enabled = btnEditer.Enabled = btnSupprimer.Enabled = Actif;
-            btnConfirmer.Enabled = btnAnnuler.Enabled;
-            
+            btnConfirmer.Enabled = btnAnnuler.Enabled = !Actif;
+
             tbNom.Enabled = tbPrenom.Enabled = tbMail.Enabled = tbEquipe.Enabled = dtpNaissance.Enabled = !Actif;
 
             if (Actif)
@@ -108,7 +108,6 @@ namespace Projet_Club_Sportif_CouUti
                     new G_Membre(ChConn).Supprimer(N_ID);
                     BS_Membre.RemoveCurrent();
                 }
-
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
@@ -149,7 +148,13 @@ namespace Projet_Club_Sportif_CouUti
                         BS_Membre.EndEdit();
                     }
 
-                        Activer(true);
+                    tbNom.Clear();
+                    tbPrenom.Clear();
+                    dtpNaissance.Value = DateTime.Today;
+                    tbMail.Clear();
+                    tbEquipe.Clear();
+
+                    Activer(true);
                 }
 
                 catch

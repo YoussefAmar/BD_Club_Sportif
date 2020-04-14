@@ -237,7 +237,7 @@
             this.MinimizeBox = false;
             this.Name = "EcranMembre";
             this.ShowIcon = false;
-            this.Text = "EcranMembre";
+            this.Text = "Table Membre";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Membre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
