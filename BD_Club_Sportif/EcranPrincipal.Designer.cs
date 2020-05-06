@@ -54,6 +54,18 @@
             this.tsbSaveHtmlE = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbOpenE = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslNom = new System.Windows.Forms.ToolStripLabel();
+            this.tscbNom = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.tstbNom = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslID = new System.Windows.Forms.ToolStripLabel();
+            this.tscbID = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tstbID = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Membre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Equipe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Adv)).BeginInit();
@@ -280,10 +292,22 @@
             this.toolStripSeparator3,
             this.tsbSaveHtmlE,
             this.toolStripSeparator4,
-            this.tsbOpenE});
+            this.tsbOpenE,
+            this.toolStripSeparator5,
+            this.toolStripSeparator6,
+            this.tslNom,
+            this.tscbNom,
+            this.toolStripSeparator7,
+            this.tstbNom,
+            this.toolStripSeparator8,
+            this.toolStripSeparator9,
+            this.tslID,
+            this.tscbID,
+            this.toolStripSeparator10,
+            this.tstbID});
             this.tsHtml.Location = new System.Drawing.Point(0, 0);
             this.tsHtml.Name = "tsHtml";
-            this.tsHtml.Size = new System.Drawing.Size(1920, 31);
+            this.tsHtml.Size = new System.Drawing.Size(1920, 33);
             this.tsHtml.TabIndex = 17;
             this.tsHtml.Text = "Document html";
             // 
@@ -293,14 +317,14 @@
             this.tsbtnSavehtmlA.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnSavehtmlA.Image")));
             this.tsbtnSavehtmlA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnSavehtmlA.Name = "tsbtnSavehtmlA";
-            this.tsbtnSavehtmlA.Size = new System.Drawing.Size(28, 28);
+            this.tsbtnSavehtmlA.Size = new System.Drawing.Size(28, 30);
             this.tsbtnSavehtmlA.Text = "Sauver les affrontements";
             this.tsbtnSavehtmlA.Click += new System.EventHandler(this.tsbtnSavehtml_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // tsbtnOpenA
             // 
@@ -308,19 +332,19 @@
             this.tsbtnOpenA.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnOpenA.Image")));
             this.tsbtnOpenA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnOpenA.Name = "tsbtnOpenA";
-            this.tsbtnOpenA.Size = new System.Drawing.Size(28, 28);
+            this.tsbtnOpenA.Size = new System.Drawing.Size(28, 30);
             this.tsbtnOpenA.Text = "Ouvrir HTML Affrontement";
             this.tsbtnOpenA.Click += new System.EventHandler(this.tsbtnOpen_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
             // 
             // tsbSaveHtmlE
             // 
@@ -328,7 +352,7 @@
             this.tsbSaveHtmlE.Image = ((System.Drawing.Image)(resources.GetObject("tsbSaveHtmlE.Image")));
             this.tsbSaveHtmlE.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSaveHtmlE.Name = "tsbSaveHtmlE";
-            this.tsbSaveHtmlE.Size = new System.Drawing.Size(28, 28);
+            this.tsbSaveHtmlE.Size = new System.Drawing.Size(28, 30);
             this.tsbSaveHtmlE.Text = "toolStripButton1";
             this.tsbSaveHtmlE.ToolTipText = "Sauver les entrainements";
             this.tsbSaveHtmlE.Click += new System.EventHandler(this.tsbSaveHtmlE_Click);
@@ -336,7 +360,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 33);
             // 
             // tsbOpenE
             // 
@@ -344,10 +368,87 @@
             this.tsbOpenE.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpenE.Image")));
             this.tsbOpenE.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbOpenE.Name = "tsbOpenE";
-            this.tsbOpenE.Size = new System.Drawing.Size(28, 28);
+            this.tsbOpenE.Size = new System.Drawing.Size(28, 30);
             this.tsbOpenE.Text = "toolStripButton2";
             this.tsbOpenE.ToolTipText = "Ouvrir HTML Entrainement";
             this.tsbOpenE.Click += new System.EventHandler(this.tsbOpenE_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 33);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 33);
+            // 
+            // tslNom
+            // 
+            this.tslNom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tslNom.Name = "tslNom";
+            this.tslNom.Size = new System.Drawing.Size(63, 30);
+            this.tslNom.Text = "Nom :";
+            // 
+            // tscbNom
+            // 
+            this.tscbNom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscbNom.Items.AddRange(new object[] {
+            "Membre",
+            "Equipe",
+            "Adversaire"});
+            this.tscbNom.Name = "tscbNom";
+            this.tscbNom.Size = new System.Drawing.Size(121, 33);
+            this.tscbNom.DropDownClosed += new System.EventHandler(this.tscbNom_DropDownClosed);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 33);
+            // 
+            // tstbNom
+            // 
+            this.tstbNom.Name = "tstbNom";
+            this.tstbNom.Size = new System.Drawing.Size(100, 33);
+            this.tstbNom.TextChanged += new System.EventHandler(this.tstbNom_TextChanged);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 33);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 33);
+            // 
+            // tslID
+            // 
+            this.tslID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tslID.Name = "tslID";
+            this.tslID.Size = new System.Drawing.Size(41, 30);
+            this.tslID.Text = "ID :";
+            // 
+            // tscbID
+            // 
+            this.tscbID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscbID.Items.AddRange(new object[] {
+            "Equipe",
+            "Adversaire"});
+            this.tscbID.Name = "tscbID";
+            this.tscbID.Size = new System.Drawing.Size(121, 33);
+            this.tscbID.DropDownClosed += new System.EventHandler(this.tscbID_DropDownClosed);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 33);
+            // 
+            // tstbID
+            // 
+            this.tstbID.Name = "tstbID";
+            this.tstbID.Size = new System.Drawing.Size(100, 33);
+            this.tstbID.TextChanged += new System.EventHandler(this.tstbID_TextChanged);
             // 
             // EcranPrincipal
             // 
@@ -418,6 +519,18 @@
         private System.Windows.Forms.ToolStripButton tsbSaveHtmlE;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsbOpenE;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripLabel tslNom;
+        private System.Windows.Forms.ToolStripComboBox tscbNom;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripTextBox tstbNom;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripLabel tslID;
+        private System.Windows.Forms.ToolStripComboBox tscbID;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripTextBox tstbID;
     }
 }
 

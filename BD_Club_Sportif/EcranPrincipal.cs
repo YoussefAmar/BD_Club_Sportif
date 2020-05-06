@@ -27,6 +27,8 @@ namespace Projet_Club_Sportif_CouUti
         {
             InitializeComponent();
             Remplir_DGV();
+            tscbNom.SelectedIndex = 0; //Se lance avec le premier objet selectionner dans la combobox
+            tscbID.SelectedIndex = 0;
         }
 
         void Form_FormClosed(object sender, FormClosedEventArgs e)
@@ -328,6 +330,93 @@ namespace Projet_Club_Sportif_CouUti
             f.FormClosed += new FormClosedEventHandler(Form_FormClosed);
 
             f.ShowDialog();
+        }
+
+        #endregion
+
+        #region filtre
+
+        //Filtrage via Nom
+
+        private void tstbNom_TextChanged(object sender, EventArgs e) //Si du texte est ajouté dans la textbox
+        {
+            if(tscbNom.Text == "Membre") //Si la textbox est sur Membre
+            {
+                DataView DV = new DataView(DT_Membre);
+                DV.RowFilter = string.Format("Nom LIKE '%{0}%'", tstbNom.Text); //Filtrage selon le Nom en rapport avec le contenu de la textbox
+                DGV_Membre.DataSource = DV;
+            }
+
+            else if(tscbNom.Text == "Equipe")
+            {
+                DataView DV = new DataView(DT_Equipe);
+                DV.RowFilter = string.Format("Nom LIKE '%{0}%'", tstbNom.Text);
+                DGV_Equipe.DataSource = DV;
+            }
+
+            else if(tscbNom.Text == "Adversaire")
+            {
+                DataView DV = new DataView(DT_Adv);
+                DV.RowFilter = string.Format("Nom LIKE '%{0}%'", tstbNom.Text);
+                DGV_Adv.DataSource = DV;
+            }
+
+        }
+
+        private void tscbNom_DropDownClosed(object sender, EventArgs e) //Reset les grids et la textbox lorsque l'on modifie la combobox
+        {
+            Remplir_DGV();
+            tstbNom.Text = "";
+        }
+
+        //Filtrage via ID
+
+        private void tstbID_TextChanged(object sender, EventArgs e)
+        {
+            int parsedValue; //Variable int de test
+
+            if (int.TryParse(tstbID.Text, out parsedValue)) //Si la textbox contient que des nombres
+            {
+
+                if (tscbID.Text == "Equipe")
+                {
+                    DataView DV_Equipe = new DataView(DT_Equipe);
+                    DataView DV_Membre = new DataView(DT_Membre);
+                    DataView DV_Entr = new DataView(DT_Entr);
+                    DataView DV_Match = new DataView(DT_Match);
+                    DV_Equipe.RowFilter = "ID = " + Int32.Parse(tstbID.Text); //Filtrage selon int encoder
+                    DV_Membre.RowFilter = "Equipe = " + Int32.Parse(tstbID.Text);
+                    DV_Entr.RowFilter = "Equipe = " + Int32.Parse(tstbID.Text);
+                    DV_Match.RowFilter = "Equipe = " + Int32.Parse(tstbID.Text);
+
+                    DGV_Equipe.DataSource = DV_Equipe;
+                    DGV_Membre.DataSource = DV_Membre;
+                    DGV_Entr.DataSource = DV_Entr;
+                    DGV_Match.DataSource = DV_Match;
+                }
+
+                else if (tscbID.Text == "Adversaire")
+                {
+                    DataView DV_Adv = new DataView(DT_Adv);
+                    DataView DV_Match = new DataView(DT_Match);
+                    DV_Adv.RowFilter = "ID = " + Int32.Parse(tstbID.Text);
+                    DV_Match.RowFilter = "Adversaire = " + Int32.Parse(tstbID.Text);
+
+                    DGV_Adv.DataSource = DV_Adv;
+                    DGV_Match.DataSource = DV_Match;
+                }
+            }
+
+            else //Si la textbox ne contient pas que des nombres, on reset le filtre
+            {
+                Remplir_DGV();
+            }
+        }
+
+        private void tscbID_DropDownClosed(object sender, EventArgs e) //Reset les grids et la textbox lorsque l'on modifie la combobox
+        {
+            Remplir_DGV();
+            tstbID.Text = "";
         }
 
         #endregion
