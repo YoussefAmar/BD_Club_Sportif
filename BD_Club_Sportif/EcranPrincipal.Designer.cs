@@ -307,7 +307,7 @@
             this.tstbID});
             this.tsHtml.Location = new System.Drawing.Point(0, 0);
             this.tsHtml.Name = "tsHtml";
-            this.tsHtml.Size = new System.Drawing.Size(1920, 33);
+            this.tsHtml.Size = new System.Drawing.Size(1758, 33);
             this.tsHtml.TabIndex = 17;
             this.tsHtml.Text = "Document html";
             // 
@@ -454,8 +454,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(1920, 962);
+            this.ClientSize = new System.Drawing.Size(1758, 962);
             this.Controls.Add(this.tsHtml);
             this.Controls.Add(this.lblGestion);
             this.Controls.Add(this.lbl_Entr);
@@ -475,7 +477,7 @@
             this.Controls.Add(this.lblMembre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximumSize = new System.Drawing.Size(2000, 2000);
-            this.MinimumSize = new System.Drawing.Size(1918, 1018);
+            this.MinimumSize = new System.Drawing.Size(1780, 1018);
             this.Name = "EcranPrincipal";
             this.ShowIcon = false;
             this.Text = "Ecran Principal";
