@@ -12,6 +12,7 @@ using System.Data.SqlTypes;
 using System.IO;
 using Projet_Club_Sportif.Classes;
 using Projet_Club_Sportif.Gestion;
+using System.Threading;
 
 namespace Projet_Club_Sportif_CouUti
 {
@@ -44,7 +45,7 @@ namespace Projet_Club_Sportif_CouUti
             DT_Entr = new DataTable();
             DT_Adv = new DataTable();
 
-            List<C_Membre> lTmp_M = new G_Membre(ChConn).Lire("Nom"); //Liste membre
+            List<C_Membre> lTmp_M = new G_Membre(ChConn).Lire("Nom");
             List<C_Equipe> lTmp_E = new G_Equipe(ChConn).Lire("ID"); //Liste equipe
             List<C_Adversaire> lTmp_A = new G_Adversaire(ChConn).Lire("ID"); //Liste adversaire
             List<C_Entrainement> lTmp_Entr = new G_Entrainement(ChConn).Lire("Periode"); //Liste entrainement
@@ -180,7 +181,7 @@ namespace Projet_Club_Sportif_CouUti
             f.ShowDialog();
         }
 
-        private void tsbtnSavehtml_Click(object sender, EventArgs e) //Sauve les matchs sous html
+        private void ModifGrid()
         {
             DT_Match = new DataTable();
             BS_Match = new BindingSource();
@@ -206,7 +207,10 @@ namespace Projet_Club_Sportif_CouUti
             DGV_Match.DataSource = BS_Match;
 
             //On remplis la grid uniquement avec les matchs se déroulant dans la semaine
+        }
 
+        private void GenererHtml()
+        {
             //Table start
             string html = "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
 
@@ -222,13 +226,13 @@ namespace Projet_Club_Sportif_CouUti
             foreach (DataGridViewRow row in DGV_Match.Rows)
             {
 
-                    html += "<tr>";
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        html += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
-                    }
-                    html += "</tr>";
-                
+                html += "<tr>";
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    html += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
+                }
+                html += "</tr>";
+
             }
 
             //Table end
@@ -241,7 +245,13 @@ namespace Projet_Club_Sportif_CouUti
             File.WriteAllText(path, html); //Ecriture du fichier
 
             MessageBox.Show("Chemin du fichier : " + path, "Sauvegarde du fichier HTML"); //Affichage
+        }
 
+        private void tsbtnSavehtml_Click(object sender, EventArgs e) //Sauve les matchs sous html
+        {
+            Thread tHtml = new Thread(GenererHtml);
+            ModifGrid();
+            tHtml.Start();
             Remplir_DGV(); //Retour à la normal pour la grid utilisée
         }
 

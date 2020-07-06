@@ -39,10 +39,14 @@ namespace Projet_Club_Sportif_CouUti
             DT_Membre.Columns.Add("Naissance");
             DT_Membre.Columns.Add("Mail");
             DT_Membre.Columns.Add("Equipe");
+            DT_Membre.Columns.Add("Poids (kg)");
+            DT_Membre.Columns.Add("Taille (cm)");
 
             List<C_Membre> lTmp_M = new G_Membre(ChConn).Lire("Nom");
             foreach (C_Membre Tmp in lTmp_M)
-                DT_Membre.Rows.Add(Tmp.IdMembre, Tmp.Nom, Tmp.Prenom, Tmp.Naissance.ToShortDateString(), Tmp.Mail, Tmp.IdEquipe_membre);
+            {
+                DT_Membre.Rows.Add(Tmp.IdMembre, Tmp.Nom, Tmp.Prenom, Tmp.Naissance.ToShortDateString(), Tmp.Mail, Tmp.IdEquipe_membre, Tmp.Poids, Tmp.Taille);
+            }
 
             BS_Membre = new BindingSource{DataSource = DT_Membre};
             DGV_Membre.DataSource = BS_Membre;
@@ -129,14 +133,14 @@ namespace Projet_Club_Sportif_CouUti
 
                     if (Ajout == true) //Mode ajout
                     {
-                        int N_ID = new G_Membre(ChConn).Ajouter(tbNom.Text, tbPrenom.Text, dtpNaissance.Value.Date, tbMail.Text, int.Parse(tbEquipe.Text));
-                        DT_Membre.Rows.Add(N_ID, tbNom.Text, tbPrenom.Text, dtpNaissance.Text, tbMail.Text, tbEquipe.Text);
+                        int N_ID = new G_Membre(ChConn).Ajouter(tbNom.Text, tbPrenom.Text, dtpNaissance.Value.Date, tbMail.Text, int.Parse(tbEquipe.Text), int.Parse(tbPoids.Text),int.Parse(tbTaille.Text));
+                        DT_Membre.Rows.Add(N_ID, tbNom.Text, tbPrenom.Text, dtpNaissance.Text, tbMail.Text, tbEquipe.Text, tbPoids.Text, tbTaille.Text);
                     }
 
                     else //Mode édition
                     {
                         int N_ID = int.Parse(DGV_Membre.SelectedRows[0].Cells["ID"].Value.ToString());
-                        new G_Membre(ChConn).Modifier(N_ID, tbNom.Text, tbPrenom.Text, dtpNaissance.Value.Date, tbMail.Text, int.Parse(tbEquipe.Text));
+                        new G_Membre(ChConn).Modifier(N_ID, tbNom.Text, tbPrenom.Text, dtpNaissance.Value.Date, tbMail.Text, int.Parse(tbEquipe.Text),int.Parse(tbPoids.Text),int.Parse(tbTaille.Text));
 
                         DGV_Membre.SelectedRows[0].Cells["ID"].Value = N_ID;
                         DGV_Membre.SelectedRows[0].Cells["Nom"].Value = tbNom.Text;
@@ -144,6 +148,8 @@ namespace Projet_Club_Sportif_CouUti
                         DGV_Membre.SelectedRows[0].Cells["Naissance"].Value = dtpNaissance.Value.ToShortDateString();
                         DGV_Membre.SelectedRows[0].Cells["Mail"].Value = tbMail.Text;
                         DGV_Membre.SelectedRows[0].Cells["Equipe"].Value = tbEquipe.Text;
+                        DGV_Membre.SelectedRows[0].Cells["Poids (kg)"].Value = tbPoids.Text;
+                        DGV_Membre.SelectedRows[0].Cells["Taille (cm)"].Value = tbTaille.Text;
 
                         BS_Membre.EndEdit();
                     }

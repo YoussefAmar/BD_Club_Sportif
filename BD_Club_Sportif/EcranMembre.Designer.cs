@@ -44,6 +44,10 @@
             this.lblNaissance = new System.Windows.Forms.Label();
             this.tbEquipe = new System.Windows.Forms.TextBox();
             this.lblEquipe = new System.Windows.Forms.Label();
+            this.tbPoids = new System.Windows.Forms.TextBox();
+            this.lblPoids = new System.Windows.Forms.Label();
+            this.tbTaille = new System.Windows.Forms.TextBox();
+            this.lblTaille = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Membre)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,12 +214,50 @@
             this.lblEquipe.TabIndex = 24;
             this.lblEquipe.Text = "Numéro Equipe";
             // 
+            // tbPoids
+            // 
+            this.tbPoids.Location = new System.Drawing.Point(346, 626);
+            this.tbPoids.Name = "tbPoids";
+            this.tbPoids.Size = new System.Drawing.Size(105, 26);
+            this.tbPoids.TabIndex = 27;
+            // 
+            // lblPoids
+            // 
+            this.lblPoids.AutoSize = true;
+            this.lblPoids.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPoids.Location = new System.Drawing.Point(342, 599);
+            this.lblPoids.Name = "lblPoids";
+            this.lblPoids.Size = new System.Drawing.Size(63, 24);
+            this.lblPoids.TabIndex = 26;
+            this.lblPoids.Text = "Poids";
+            // 
+            // tbTaille
+            // 
+            this.tbTaille.Location = new System.Drawing.Point(527, 626);
+            this.tbTaille.Name = "tbTaille";
+            this.tbTaille.Size = new System.Drawing.Size(105, 26);
+            this.tbTaille.TabIndex = 29;
+            // 
+            // lblTaille
+            // 
+            this.lblTaille.AutoSize = true;
+            this.lblTaille.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTaille.Location = new System.Drawing.Point(527, 599);
+            this.lblTaille.Name = "lblTaille";
+            this.lblTaille.Size = new System.Drawing.Size(59, 24);
+            this.lblTaille.TabIndex = 28;
+            this.lblTaille.Text = "Taille";
+            // 
             // EcranMembre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(1003, 700);
+            this.Controls.Add(this.tbTaille);
+            this.Controls.Add(this.lblTaille);
+            this.Controls.Add(this.tbPoids);
+            this.Controls.Add(this.lblPoids);
             this.Controls.Add(this.tbEquipe);
             this.Controls.Add(this.lblEquipe);
             this.Controls.Add(this.lblNaissance);
@@ -261,5 +303,9 @@
         private System.Windows.Forms.Label lblNaissance;
         private System.Windows.Forms.TextBox tbEquipe;
         private System.Windows.Forms.Label lblEquipe;
+        private System.Windows.Forms.TextBox tbPoids;
+        private System.Windows.Forms.Label lblPoids;
+        private System.Windows.Forms.TextBox tbTaille;
+        private System.Windows.Forms.Label lblTaille;
     }
 }
